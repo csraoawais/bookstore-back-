@@ -1,6 +1,13 @@
 package com.awaisdev.bookstoreback.model;
 
+
+
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -9,21 +16,27 @@ public class Book {
     @GeneratedValue
     private Long id;
     @Column(length = 100)
+    @NotNull
+    @Size(min = 1, max = 100)
     private String title;
     @Column(length = 1000)
+    @Size(min = 1, max = 1000)
     private String description;
     @Column(name = "unit_cost")
+    @Min(1)
     private float unitCost;
-
+    @NotNull
+    @Size(min = 1, max = 50)
     private String isbn;
     @Column(name = "publication_date")
     @Temporal(TemporalType.DATE)
+    @Past
     private Date publicationDate;
     @Column(name = "no_of_pages")
     private Integer noOfPages;
     @Column(name = "image_Url")
     private String imageUrl;
-
+    @Enumerated
     private Language language;
 
     public Long getId() {
