@@ -9,7 +9,7 @@
         <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
-    <root id="archive" name="bookstore-back-1.0-SNAPSHOT.war">
+    <root id="archive" name="bookstore-back-1.1-SNAPSHOT.war">
       <element id="artifact" artifact-name="bookstore-back:war exploded" />
     </root>
   </artifact>
