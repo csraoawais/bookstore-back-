@@ -19,7 +19,7 @@ public class BookRepository {
     {
        return em.find(Book.class,id);
     }
-    @Transactional(REQUIRED)
+
     public Book create(Book book)
     {
         em.persist(book);
