@@ -1,7 +1,10 @@
 package com.awaisdev.bookstoreback.repository;
 
 import com.awaisdev.bookstoreback.model.Book;
+import com.awaisdev.bookstoreback.util.NumberGenerator;
+import com.awaisdev.bookstoreback.util.TextUtil;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -15,6 +18,10 @@ import static javax.transaction.Transactional.TxType.SUPPORTS;
 public class BookRepository {
     @PersistenceContext(unitName = "bookStorePU")
     private EntityManager em;
+    @Inject
+    private TextUtil textUtil;
+    @Inject
+    private NumberGenerator generator;
 
     public Book find(@NotNull Long id)
     {
@@ -22,7 +29,8 @@ public class BookRepository {
     }
     @Transactional(REQUIRED)
     public Book create(@NotNull Book book)
-    {
+    {   book.setTitle(textUtil.sanitize(book.getTitle()));
+        book.setIsbn(generator.generateNumber());
         em.persist(book);
         return book;
     }
